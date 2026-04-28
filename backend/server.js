@@ -25,7 +25,7 @@ app.use('/critique', critiqueRoute);
 app.use('/chat', chatRoute);
 
 // ─── Health check ─────────────────────────────────────────────────────────────
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.json({ status: 'Resume Advisor API is running', version: '1.0.0' });
 });
 
