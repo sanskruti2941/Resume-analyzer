@@ -24,17 +24,17 @@ app.use('/match', matchRoute);
 app.use('/critique', critiqueRoute);
 app.use('/chat', chatRoute);
 
+// ─── Health check ─────────────────────────────────────────────────────────────
+app.get('/', (req, res) => {
+  res.json({ status: 'Resume Advisor API is running', version: '1.0.0' });
+});
+
 // ─── Serve Static Frontend Files ───────────────────────────────────────────────
-app.use(express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // ─── Catch-all Route for React SPA ────────────────────────────────────────────
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build/index.html'));
-});
-
-// Health check (kept for backward compatibility)
-app.get('/', (req, res) => {
-  res.json({ status: 'Resume Advisor API is running', version: '1.0.0' });
+  res.sendFile(path.join(__dirname, 'build/index.html'));
 });
 
 // ─── Global Error Handler ─────────────────────────────────────────────────────
