@@ -18,11 +18,11 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
-app.use('/upload', uploadRoute);
-app.use('/analyze', analyzeRoute);
-app.use('/match', matchRoute);
-app.use('/critique', critiqueRoute);
-app.use('/chat', chatRoute);
+app.use('/api/upload', uploadRoute);
+app.use('/api/analyze', analyzeRoute);
+app.use('/api/match', matchRoute);
+app.use('/api/critique', critiqueRoute);
+app.use('/api/chat', chatRoute);
 
 // ─── Health check ─────────────────────────────────────────────────────────────
 app.get('/api', (req, res) => {
