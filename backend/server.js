@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const uploadRoute = require('./routes/upload');
 const analyzeRoute = require('./routes/analyze');
@@ -23,7 +24,15 @@ app.use('/match', matchRoute);
 app.use('/critique', critiqueRoute);
 app.use('/chat', chatRoute);
 
-// Health check
+// ─── Serve Static Frontend Files ───────────────────────────────────────────────
+app.use(express.static(path.join(__dirname, '../build')));
+
+// ─── Catch-all Route for React SPA ────────────────────────────────────────────
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
+
+// Health check (kept for backward compatibility)
 app.get('/', (req, res) => {
   res.json({ status: 'Resume Advisor API is running', version: '1.0.0' });
 });
